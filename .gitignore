@@ -1,0 +1,71 @@
+# Python specific ignores
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+*.log
+
+# Django specific ignores
+*.sqlite3
+db.sqlite3
+/media
+/staticfiles
+*.pot
+*.mo
+
+# Environment variables and secrets
+.env
+*.env
+secrets.json
+
+# Ignore migrations
+*/migrations/*.py[cod]
+*/migrations/__pycache__/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and debug info
+*.log
+*.out
+*.err
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# System specific
+.DS_Store
+Thumbs.db
+
+# IDE ignores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Docker
+*.swp
+.dockerignore
+docker-compose.override.yml
+docker-compose.override.yml
+docker-compose.prod.yml
+.dockerignore
+
+# macOS specific ignores
+.DS_Store
+.AppleDouble
+.LSOverride

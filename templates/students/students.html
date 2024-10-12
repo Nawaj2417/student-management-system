@@ -1,0 +1,94 @@
+{% extends 'Home/base.html' %}
+{% load static %}
+{% block body %}
+   
+         <div class="page-wrapper">
+            <div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Students</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                           <li class="breadcrumb-item active">Students</li>
+                        </ul>
+                     </div>
+                     <div class="col-auto text-right float-right ml-auto">
+                        <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                        <a href="{% url 'add_student' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card card-table">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table class="table table-hover table-center mb-0 datatable">
+                                 <thead>
+                                    <tr>
+                                       <th>ID</th>
+                                       <th>Name</th>
+                                       <th>Class</th>
+                                       <th>DOB</th>
+                                       <th>Parent Name</th>
+                                       <th>Mobile Number</th>
+                                       <th>Address</th>
+                                       <th class="text-right">Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {% for student in student_list %}
+                                    <tr>
+                                       <td>{{ student.student_id}}</td>
+                                       <td>
+                                          <h2 class="table-avatar">
+                                             <a href="{% url 'view_student' student.student_id %}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{ student.student_image.url }}" alt="User Image"></a>
+                                             <a href="{% url 'view_student' student.student_id %}">{{ student.first_name }} {{ student.last_name}}</a>
+                                          </h2>
+                                       </td>
+                                       <td>{{ student.student_class }}</td>
+                                       <td>{{ student.date_of_birth|date:"d M Y" }}</td>
+                                       <td>{{ student.parent.father_name }} / {{ student.parent.mother_name }}</td>
+                                       <td>{{ student.mobile_number }}</td>
+                                       <td>{{ student.parent.present_address }}</td>
+                                       <td class="text-right">
+                                          <div class="actions">
+                                             <a href="{% url 'edit_student' student.slug %}" class="btn btn-sm bg-success-light mr-2">
+                                                 <i class="fas fa-pen"></i>
+                                             </a>
+                                             <form action="{% url 'delete_student' student.slug %}" method="POST" style="display:inline;">
+                                                 {% csrf_token %}
+                                                 <button type="submit" class="btn btn-sm bg-danger-light" onclick="return confirm('Are you sure you want to delete this student?');">
+                                                     <i class="fas fa-trash"></i>
+                                                 </button>
+                                             </form>
+                                         </div>
+                                       </td>
+                                    </tr>
+                                    {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <footer>
+               <p>Copyright © 2020 Dreamguys.</p>
+            </footer>
+         </div>
+      </div>
+      <script src="{%static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+      <script src="{%static 'assets/js/popper.min.js' %}"></script>
+      <script src="{%static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script src="{%static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+      <script src="{%static 'assets/plugins/datatables/datatables.min.js' %}"></script>
+      <script src="{%static 'assets/js/script.js' %}"></script>
+   </body>
+   <!-- Mirrored from preschool.dreamguystech.com/html-template/students.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:49 GMT -->
+</html>
+
+
+{% endblock %}
